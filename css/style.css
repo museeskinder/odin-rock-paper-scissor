@@ -35,3 +35,22 @@ body {
 .score span {
     font-weight: 700;
 }
+
+.choice {
+    display: flex;
+    justify-content: space-between;
+    gap: 50px;
+}
+
+.choice-item {
+    background-color: #ffd51d;
+    font-size: 70px;
+    border-radius: 50%;
+    padding: 15px;
+    cursor: pointer;
+}
+
+.choice-item:hover {
+    transform: scale(1.2);
+    background-color: #d7b315;
+}
