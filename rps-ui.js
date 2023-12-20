@@ -65,5 +65,6 @@ export {
     scissorChoice,
     playerStatusSpan,
     computerStatusSpan,
+    statusBoard,
     statusBoardText
 };

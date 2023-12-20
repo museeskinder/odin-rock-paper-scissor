@@ -1,3 +1,15 @@
+import {
+    computerScoreSpan,
+    playerScoreSpan,
+    rockChoice,
+    paperChoice,
+    scissorChoice,
+    playerStatusSpan,
+    computerStatusSpan,
+    statusBoard,
+    statusBoardText
+} from "./rps-ui.js";
+
 const getComputerChoice = () => {
     let num = parseInt((Math.random() * 3) + 1)
     switch (num) {
@@ -29,55 +41,68 @@ const play = (playerSelection, computerSelection) => {
         return "draw";
 }
 
-var playerSelection;
+const game = (clickedElement) => {
+    let computerChoice = getComputerChoice();
+    let playerChoice;
+    if(clickedElement === rockChoice)
+        playerChoice = 'rock';
+    else if(clickedElement === paperChoice)
+        playerChoice = 'paper';
+    else
+        playerChoice = 'scissor';
+    computerStatusSpan.innerText = computerChoice.toUpperCase();
+    playerStatusSpan.innerText = playerChoice.toUpperCase();
 
-const helper = () => {
-    console.log();
-    console.log("****************************************************");
-    console.log("***************** How to play ******************");
-    console.log("1. There will be five rounds on this game.");
-    console.log('2. At each round player will be prompoted to "enter","rock", paper or "scissor".');
-    console.log("3. Next ther computer will guess from the three choices the player given.");
-    console.log('4. "rock" beats scissor \n "scissor" beats "paper"\n "paper" beats "rock"')
-    console.log("5. Highest score out of five wins the game");
-    console.log();
+    return play(playerChoice, computerChoice);
+
 }
 
-const game = () => {
-    helper();
-    let computerScore = 0;
-    let playerScore = 0;
+const displayWinner = () => {
+    computerScoreSpan.innerText = '';
+    playerScoreSpan.innerText = '';
+    playerStatusSpan.innerText = '';
+    computerStatusSpan.innerText = '';
+    statusBoard.setAttribute('style', 'display: block');
 
-    for(let i = 0; i < 5; i++) {
-        if(playerScore - computerScore !== 2 || 3 && computerScore - playerScore !== 2 || 3) {
-            playerSelection = prompt("Enter your choise( rock , paper or scissor: ");
-            var computerSelection = getComputerChoice();
-            console.log(`Your Choice: ${playerSelection}`);
-            console.log(`Computer Choice: ${computerSelection}`);
-            if(play(playerSelection.toLowerCase(), computerSelection) === "computer") {
-                console.log("Computer wins")
-                computerScore++;
-            }
-            else if (play(playerSelection.toLowerCase(), computerSelection) === "player") {
-                console.log("Player wins")
-                playerScore++;
-            }
-            else
-                console.log("Draw");
-        }
-
-        else
-            break;
+    if(computerScore > playerScore)  {
+        statusBoardText.innerText = 'COMPUTER WON';
+        statusBoard.classList = 'status-board lose';
+    }
+    else if (computerScore < playerScore) {
+        statusBoardText.innerText = 'PLAYER WON';
+        statusBoard.classList = 'status-board win';
+    } 
+    else {
+        statusBoardText.innerText = 'DRAW';
+        statusBoard.classList = 'status-board draw';
     }
 
-    if(playerScore - computerScore === 2) 
-        console.log(`Player wins by Total Domination\nPlayer Score: ${playerScore}\nComputer Score: ${computerScore}`);
-    else if(computerScore - playerScore === 2)
-        console.log(`Computer Wins by Total Domination  ${computerScore} - ${playerScore}`)
-    else if(computerScore > playerScore)
-        console.log(`Computer won ${computerScore} - ${playerScore}`)
-    else if(playerScore > computerScore)
-        console.log(`Player won ${playerScore} - ${computerScore}`)
+    playerScore = 0;
+    computerScore = 0;
+
 }
 
-game();
+let playerScore = 0, computerScore = 0;
+
+[paperChoice, rockChoice, scissorChoice].forEach((e) => {
+    e.addEventListener('click', (f) => {
+        if(game(f.target) === 'player') {
+            playerScore++;
+            playerScoreSpan.innerText = playerScore;
+        }
+        else if(game(f.target) === 'computer') {
+            computerScore++;
+            computerScoreSpan.innerText = computerScore;
+        }
+        else {
+            computerScore++;
+            playerScore++;
+            playerScoreSpan.innerText = playerScore;
+            computerScoreSpan.innerText = computerScore;
+        }
+
+
+        if(computerScore == 5 || playerScore == 5) 
+            displayWinner();
+    })
+})

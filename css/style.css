@@ -74,3 +74,8 @@ span {
     background-color: #c8abae;
     color: red;
 }
+
+.status-board.draw {
+    background-color: rgb(190, 165, 120);
+    color: black;
+}
