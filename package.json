@@ -1,0 +1,12 @@
+{
+  "name": "odin-rock-paper-scissor",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "rock paper scissor game from theodinproject",
+  "main": "rps-code.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "museeskinder",
+  "license": "MIT"
+}

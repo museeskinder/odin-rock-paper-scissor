@@ -49,11 +49,21 @@ computerStatus.append(computerStatusSpan);
 status.append(playerStatus, computerStatus);
 
 const statusBoard = document.createElement('div');
-statusBoard.classList= 'status-board lose';
+statusBoard.classList= 'status-board';
 const statusBoardText= document.createElement('span');
 statusBoard.appendChild(statusBoardText);
 
-statusBoardText.innerText = 'YOU LOSE';
 
 //attaching different sections to container all at once
 container.append(score, choice, status, statusBoard);
+
+export {
+    computerScoreSpan,
+    playerScoreSpan,
+    rockChoice,
+    paperChoice,
+    scissorChoice,
+    playerStatusSpan,
+    computerStatusSpan,
+    statusBoardText
+};
