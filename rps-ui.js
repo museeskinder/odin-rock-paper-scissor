@@ -35,7 +35,25 @@ scissorChoice.innerText = '✂️';
 
 choice.append(rockChoice, paperChoice, scissorChoice)
 
+//status section
+const status = document.createElement('div');
+status.className = 'status';
+const playerStatus = document.createElement('p');
+playerStatus.innerText = 'You choose ';
+const playerStatusSpan = document.createElement('span');
+playerStatus.append(playerStatusSpan);
+const computerStatus = document.createElement('p');
+computerStatus.innerText = 'Computer chooses '
+const computerStatusSpan = document.createElement('span');
+computerStatus.append(computerStatusSpan);
+status.append(playerStatus, computerStatus);
+
+const statusBoard = document.createElement('div');
+statusBoard.classList= 'status-board lose';
+const statusBoardText= document.createElement('span');
+statusBoard.appendChild(statusBoardText);
+
+statusBoardText.innerText = 'YOU LOSE';
 
 //attaching different sections to container all at once
-container.append(score, choice);
-
+container.append(score, choice, status, statusBoard);

@@ -27,13 +27,14 @@ body {
 .score {
     align-self: flex-end;
 }
-.score p {
+.score p , .status p{
     font-size: 20px;
     text-align: end;
 }
 
-.score span {
+span {
     font-weight: 700;
+    padding-left: 10px;
 }
 
 .choice {
@@ -53,4 +54,23 @@ body {
 .choice-item:hover {
     transform: scale(1.2);
     background-color: #d7b315;
+}
+
+.status p {
+    text-align: center;
+}
+
+.status-board {
+    display: none;
+    padding: 10px 15px; 
+}
+
+.status-board.win {
+    background-color: rgb(165, 209, 165);
+    color: green;    
+}
+
+.status-board.lose {
+    background-color: #c8abae;
+    color: red;
 }
